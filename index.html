@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Mate</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
+    <script src="js/Chart.js"></script>
+    <script src="js/Chart.min.js"></script>
+</head>
+<body>
+    <style id="styleCss">
+        :root {
+            --Back: #ffffff60;
+            --DisBack: #bbbbbb60;
+            --Color: #fff;
+            --ColorHover: #000;
+            --BackgroundThings: linear-gradient(to right, #5900ff, #da6057);
+            --ColorOne: #5900ff;
+            --ColorTwo: #da6057;
+        }
+
+        
+    body {margin: 0;padding: 0;max-height: 100vh;font-family: 'Poppins';list-style: none;text-decoration: none;-webkit-user-select: none; /* Safari */        -moz-user-select: none; /* Firefox */-ms-user-select: none; /* IE10+/Edge */user-select: none; /* Standard */overflow-y: hidden;z-index: -3;background:url(images/Sfondo.png);background-size: 120%;background-repeat: no-repeat; transition: .5s;}
+
+        
+    </style>
+    <div class="bannerHTML">
+    <video autoplay muted loop draggable="false">
+        <source src="Violino.mp4" type="video/mp4">
+    </video>
+    <div class="backgroundHTML"></div>
+    </div>
+    <h1 id="titoloFem">Statistiche Femminicidi</h1>
+    <h1 id="titoloImp">Impostazioni</h1>
+
+    <div class="vetro" id="d">
+        <a id="count">1</a>
+        <p>
+       I lunghi mesi di lockdown e la forzata coabitazione nelle case hanno allungato ancora di più la pagina nera dei femminicidi nel nostro Paese. 
+        Il dato, nero su bianco, ha trovato conferma in un report dell'Istat dedicato agli omicidi: nei primi 6 mesi 2020 la situazione si è ulteriormente aggravata con un numero di delitti pari al 45% del totale degli omicidi, contro il 35% dei primi sei mesi del 2019.
+        </p>
+    </div>
+
+    <div class="vetroImp" id="impostazioni">
+        <a href="#" draggable="false" class="chiudi" id="x" onclick="chiudiImpostazioni()"><i class="fa fa-times" aria-hidden="true"></i></a>
+        <ul>
+            <li>Tema Scuro:<a class="changeThemeToScuro" draggable="false" onclick="changeThemeToScuro()" id="changeThemeBack" href="#"><i class="circle" id="circleBtn"></i></a></li>
+        </ul>
+    </div>
+
+        <div id="boxSx" class="boxSinistraVis">Questa freccia non è attiva perché sei alla prima diapositiva!</div>
+        <div id="boxDx" class="boxDestra">Questa freccia non è attiva perché sei all'ultima diapositiva!</div>
+        <a class="frecciadisx" draggable="false" href="#" id="fsx" onclick="nonCambia()"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+        <a class="frecciadestra" draggable="false" href="#" id="fdx" onclick="cambiaDiapositivaDestra2()"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+    <a class="impostazioni" draggable="false" href="#" id="impBtn" onclick="apriImpostazioni()"><i class="fa fa-cog" aria-hidden="true"></i></a>
+    <script>
+
+    
+
+        function sleep(milliseconds) {
+  			var start = new Date().getTime();
+  			for (var i = 0; i < 1e7; i++) {
+    			if ((new Date().getTime() - start) > milliseconds){
+      				break;
+    			}
+  			}
+		}
+
+    function changeThemeToScuro() {
+        document.getElementById("circleBtn").style.left = "48px";
+        document.getElementById("changeThemeBack").style.background = "#001e47";
+        document.getElementById("circleBtn").style.background = "#fff";
+        document.getElementById("styleCss").innerHTML = ":root {--Back: #00000060;--DisBack: #44444460; --Color: #000; --ColorHover: #fff; --BackgroundThings: linear-gradient(to right, #941c1a, #5e4eb2); --ColorOne: #941c1a; --ColorTwo: #5e4eb2;} body {margin: 0;padding: 0;max-height: 100vh;font-family: 'Poppins';list-style: none;text-decoration: none;-webkit-user-select: none; /* Safari */        -moz-user-select: none; /* Firefox */-ms-user-select: none; /* IE10+/Edge */user-select: none; /* Standard */overflow-y: hidden;z-index: -3;background:url(images/SfondoScuro.png);background-size: 120%;background-repeat: no-repeat;transition: .5s;}";
+        document.getElementById("changeThemeBack").onclick = function() { changeThemeToChiaro() };
+    }
+
+    function changeThemeToChiaro() {
+        document.getElementById("circleBtn").style.left = "7px";
+        document.getElementById("changeThemeBack").style.background = "var(--Back)";
+        document.getElementById("circleBtn").style.background = "#001e47";
+        document.getElementById("styleCss").innerHTML = ":root {--Back: #ffffff60;--DisBack: #bbbbbb60; --Color: #fff; --ColorHover: #000; --BackgroundThings: linear-gradient(to right, #5900ff, #da6057); --ColorOne: #5900ff; --ColorTwo: #da6057;} body {margin: 0;padding: 0;max-height: 100vh;font-family: 'Poppins';list-style: none;text-decoration: none;-webkit-user-select: none; /* Safari */        -moz-user-select: none; /* Firefox */-ms-user-select: none; /* IE10+/Edge */user-select: none; /* Standard */overflow-y: hidden;z-index: -3;background:url(images/Sfondo.png);background-size: 120%;background-repeat: no-repeat;transition: .5s;}";
+        document.getElementById("changeThemeBack").onclick = function() { changeThemeToScuro() };
+    }
+    
+
+        function apriImpostazioni() {
+    document.getElementById("impostazioni").style.opacity = "1";
+    document.getElementById("impostazioni").style.zIndex = "2";
+    document.getElementById("impostazioni").style.transform = "translate(-50%,-50%) scale(1)";
+    document.getElementById("x").style.opacity = "1";
+    document.getElementById("d").style.opacity = "0";
+    document.getElementById("d").style.zIndex = "-2";
+    document.getElementById("fsx").style.opacity = "0";
+    document.getElementById("fsx").style.zIndex = "-2";
+    document.getElementById("fdx").style.opacity = "0";
+    document.getElementById("fdx").style.zIndex = "-2";
+    document.getElementById("fsx").style.display = "none";
+    document.getElementById("fdx").style.display = "none";
+    document.getElementById("boxSx").style.display = "none";
+    document.getElementById("boxDx").style.display = "none";
+    document.getElementById("titoloFem").style.opacity = "0";
+    document.getElementById("titoloImp").style.opacity = "1";
+    document.getElementById("impBtn").onclick = function() { chiudiImpostazioni() };
+}
+
+function chiudiImpostazioni() {
+    document.getElementById("impostazioni").style.opacity = "0";
+    document.getElementById("impostazioni").style.zIndex = "-2";
+    document.getElementById("impostazioni").style.transform = "translate(100%,100%) scale(0)";
+    document.getElementById("d").style.opacity = "1";
+    document.getElementById("d").style.zIndex = "2";
+    document.getElementById("fsx").style.display = "flex";
+    document.getElementById("fdx").style.display = "flex";
+    document.getElementById("boxSx").style.display = "flex";
+    document.getElementById("boxDx").style.display = "flex";
+    document.getElementById("fsx").style.opacity = "1";
+    document.getElementById("fsx").style.zIndex = "2";
+    document.getElementById("fdx").style.opacity = "1";
+    document.getElementById("fdx").style.zIndex = "2";
+    document.getElementById("x").style.opacity = "0";
+    document.getElementById("titoloFem").style.opacity = "1";
+    document.getElementById("titoloImp").style.opacity = "0";
+    document.getElementById("impBtn").onclick = function() { apriImpostazioni() };
+}
+
+    function cambiaDiapositivaSinistra1(){
+        document.getElementById("d").style.opacity = "0";
+        document.getElementById("d").innerHTML = "<a id='count'>1</a><p>I lunghi mesi di lockdown e la forzata coabitazione nelle case hanno allungato ancora di più la pagina nera dei femminicidi nel nostro Paese. Il dato, nero su bianco, ha trovato conferma in un report dell'Istat dedicato agli omicidi: nei primi 6 mesi 2020 la situazione si è ulteriormente aggravata con un numero di delitti pari al 45% del totale degli omicidi, contro il 35% dei primi sei mesi del 2019.</p>"
+        document.getElementById("d").style.opacity = "1";
+        document.getElementById("fsx").onclick = function() { nonCambia() };
+        document.getElementById("fsx").className = "frecciadisx";
+        document.getElementById("fsx").removeAttribute("href");
+        document.getElementById("boxSx").className = "boxSinistraVis";
+        document.getElementById("fdx").onclick = function() { cambiaDiapositivaDestra2() };
+    }
+
+    function cambiaDiapositivaSinistra2(){
+        document.getElementById("d").innerHTML = "<a id='count'>2</a><p style='transform: translate(-50%,-50%) scale(1.3);'>La percentuale poi è schizzata al 50% durante il lockdown nei mesi di marzo e aprile. Una scia di di sangue proseguita senza soluzione di continuità, visto che nel 2019 il numero dei femminicidi aveva raggiunto quota 101 e nel 2018 la percentuale di uomini imputati di omicidio era stata del 93%. Secondo l'Istituto di statistica le donne sono state uccise all'interno delle mura domestiche - quindi in un ambito affettivo/familiare - nel 90% dei casi nel primo semestre 2020 per mano di partner o ex partner (61%).</p>"
+        document.getElementById("fsx").onclick = function() { cambiaDiapositivaSinistra1() };
+        document.getElementById("fdx").onclick = function() { cambiaDiapositivaDestra3() };
+    }
+
+    function cambiaDiapositivaSinistra3(){
+        document.getElementById("d").innerHTML = "<a id='count'>3</a><p style='transform: translate(-50%,-50%) scale(1);'>Da sottolineare poi che fra i partner, nel 70% dei casi l'assassino è il marito, mentre tra gli ex prevalgono gli ex conviventi e gli ex fidanzati. Il dato sulle uccisioni delle donne ha trovato conferma pochi giorni fa nel rapporto del Servizio analisi criminale della Polizia. Dallo studio è emerso un leggero aumento delle vittime di sesso femminile, passate da 111 del 2019 a 112 del 2020, e un incremento delle donne uccise in ambito familiare, salite da 94 del 2019 a 98 dell'anno scorso. Più nello specifico dallo studio della Polizia è emerso poi che a febbraio, maggio e ottobre 2020 il 100% delle donne vittime di omicidio han perso la vita in un ambito familiare-affettivo.</p>"
+        document.getElementById("fsx").onclick = function() { cambiaDiapositivaSinistra2() };
+        document.getElementById("fdx").onclick = function() { cambiaDiapositivaDestra4() };
+    }
+
+    function cambiaDiapositivaSinistra4(){
+        document.getElementById("d").innerHTML = "<a id='count'>4</a><h3 class='titolo2'>Periodo Gennaio-Ottobre</h3><div class='containerChart'><div class='flexChart'><h3 class='titoloAnno'>2019</h3><div class='ChartBar1'></div><h3 class='titoloNum'>99 (85 in ambito familiare)</h3></div><div class='flexChart'><h3 class='titoloAnno'>2020</h3><div class='ChartBar2'></div><h3 class='titoloNum'>91 (81 in ambito <br> familiare)</h3></div></div><h3 class='titolo3'>Così a partire dal 2000</h3><div class='flexSVG'><svg width='100%' height='100%' viewBox='0 0 42 42' class='donut'><defs><linearGradient id='grad1' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:var(--ColorOne);stop-opacity:1' /><stop offset='100%' style='stop-color:var(--ColorTwo);stop-opacity:1' /></linearGradient></defs><circle class='donut-hole' cx='21' cy='21' r='15.91549430918954' fill='transparent'></circle><circle class='donut-ring' cx='21' cy='21' r='15.91549430918954' fill='transparent' stroke='var(--Back)' stroke-width='3'></circle><circle class='donut-segment1' cx='21' cy='21' r='15.91549430918954' fill='transparent' stroke='url(#grad1)'' stroke-width='3' stroke-dasharray='30 70' stroke-dashoffset='15'></circle><g class='chart-text'><text x='50%' y='50%' class='chart-number'>3.344</text><text x='50%' y='50%' class='chart-label'>Donne Uccise</text></g></svg><div class='testoDXSVG'>30% <br> degli <br> omicidi <br> volontari</div><svg width='100%' height='100%' viewBox='0 0 42 42' class='donut'><defs><linearGradient id='grad1' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:var(--ColorOne);stop-opacity:1' /><stop offset='100%' style='stop-color:var(--ColorTwo);stop-opacity:1' /></linearGradient></defs><circle class='donut-hole' cx='21' cy='21' r='15.91549430918954' fill='transparent'></circle><circle class='donut-ring' cx='21' cy='21' r='15.91549430918954' fill='transparent' stroke='var(--Back)' stroke-width='3'></circle><circle class='donut-segment2' cx='21' cy='21' r='15.91549430918954' fill='transparent' stroke='url(#grad1)' stroke-width='3' stroke-dasharray='48.7 51.3' stroke-dashoffset='25'></circle><g class='chart-text'><text x='50%' y='50%' class='chart-number'>1.628</text><text x='50%' y='50%' class='chart-label'>Vittime</text></g></svg><div class='testoDXSVG'>48,7% <br> delle <br> donne <br> uccise</div><svg width='100%' height='100%' viewBox='0 0 42 42' class='donut'><defs><linearGradient id='grad1' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:var(--ColorOne);stop-opacity:1' /><stop offset='100%' style='stop-color:var(--ColorTwo);stop-opacity:1' /></linearGradient></defs><circle class='donut-hole' cx='21' cy='21' r='15.91549430918954' fill='transparent'></circle><circle class='donut-ring' cx='21' cy='21' r='15.91549430918954' fill='transparent' stroke='var(--Back)' stroke-width='3'></circle><circle class='donut-segment3' cx='21' cy='21' r='15.91549430918954' fill='transparent' stroke='url(#grad1)' stroke-width='3' stroke-dasharray='90 10' stroke-dashoffset='25'></circle><g class='chart-text'><text x='50%' y='50%' class='chart-number'>793</text><text x='50%' y='50%' class='chart-label'>Assassini</text></g></svg><div class='testoDXSVG'>94% <br> degli <br> autori <br> è uomo</div></div>"
+        document.getElementById("fsx").onclick = function() { cambiaDiapositivaSinistra3() };
+        document.getElementById("fdx").onclick = function() { cambiaDiapositivaDestra5() };
+        document.getElementById("fdx").className = "frecciadestra";
+        document.getElementById("boxDx").className = "boxDestra";
+    }
+    
+
+    function cambiaDiapositivaDestra2(){
+        document.getElementById("d").innerHTML = "<a id='count'>2</a><p style='transform: translate(-50%,-50%) scale(1.3);'>La percentuale poi è schizzata al 50% durante il lockdown nei mesi di marzo e aprile. Una scia di di sangue proseguita senza soluzione di continuità, visto che nel 2019 il numero dei femminicidi aveva raggiunto quota 101 e nel 2018 la percentuale di uomini imputati di omicidio era stata del 93%. Secondo l'Istituto di statistica le donne sono state uccise all'interno delle mura domestiche - quindi in un ambito affettivo/familiare - nel 90% dei casi nel primo semestre 2020 per mano di partner o ex partner (61%).</p>"
+        document.getElementById("fsx").onclick = function() { cambiaDiapositivaSinistra1() };
+        document.getElementById("fdx").onclick = function() { cambiaDiapositivaDestra3() };
+        document.getElementById("fsx").className = "frecciasinistra";
+        document.getElementById("boxSx").className = "boxSinistra";
+    }
+
+    function cambiaDiapositivaDestra3(){
+        document.getElementById("d").innerHTML = "<a id='count'>3</a><p style='transform: translate(-50%,-50%) scale(1);'>Da sottolineare poi che fra i partner, nel 70% dei casi l'assassino è il marito, mentre tra gli ex prevalgono gli ex conviventi e gli ex fidanzati. Il dato sulle uccisioni delle donne ha trovato conferma pochi giorni fa nel rapporto del Servizio analisi criminale della Polizia. Dallo studio è emerso un leggero aumento delle vittime di sesso femminile, passate da 111 del 2019 a 112 del 2020, e un incremento delle donne uccise in ambito familiare, salite da 94 del 2019 a 98 dell'anno scorso. Più nello specifico dallo studio della Polizia è emerso poi che a febbraio, maggio e ottobre 2020 il 100% delle donne vittime di omicidio han perso la vita in un ambito familiare-affettivo.</p>"
+        document.getElementById("fsx").onclick = function() { cambiaDiapositivaSinistra2() };
+        document.getElementById("fdx").onclick = function() { cambiaDiapositivaDestra4() };
+    }
+
+    function cambiaDiapositivaDestra4(){
+        document.getElementById("d").innerHTML = "<a id='count'>4</a><h3 class='titolo2'>Periodo Gennaio-Ottobre</h3><div class='containerChart'><div class='flexChart'><h3 class='titoloAnno'>2019</h3><div class='ChartBar1'></div><h3 class='titoloNum'>99 (85 in ambito familiare)</h3></div><div class='flexChart'><h3 class='titoloAnno'>2020</h3><div class='ChartBar2'></div><h3 class='titoloNum'>91 (81 in ambito <br> familiare)</h3></div></div><h3 class='titolo3'>Così a partire dal 2000</h3><div class='flexSVG'><svg width='100%' height='100%' viewBox='0 0 42 42' class='donut'><defs><linearGradient id='grad1' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:var(--ColorOne);stop-opacity:1' /><stop offset='100%' style='stop-color:var(--ColorTwo);stop-opacity:1' /></linearGradient></defs><circle class='donut-hole' cx='21' cy='21' r='15.91549430918954' fill='transparent'></circle><circle class='donut-ring' cx='21' cy='21' r='15.91549430918954' fill='transparent' stroke='var(--Back)' stroke-width='3'></circle><circle class='donut-segment1' cx='21' cy='21' r='15.91549430918954' fill='transparent' stroke='url(#grad1)'' stroke-width='3' stroke-dasharray='30 70' stroke-dashoffset='15'></circle><g class='chart-text'><text x='50%' y='50%' class='chart-number'>3.344</text><text x='50%' y='50%' class='chart-label'>Donne Uccise</text></g></svg><div class='testoDXSVG'>30% <br> degli <br> omicidi <br> volontari</div><svg width='100%' height='100%' viewBox='0 0 42 42' class='donut'><defs><linearGradient id='grad1' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:var(--ColorOne);stop-opacity:1' /><stop offset='100%' style='stop-color:var(--ColorTwo);stop-opacity:1' /></linearGradient></defs><circle class='donut-hole' cx='21' cy='21' r='15.91549430918954' fill='transparent'></circle><circle class='donut-ring' cx='21' cy='21' r='15.91549430918954' fill='transparent' stroke='var(--Back)' stroke-width='3'></circle><circle class='donut-segment2' cx='21' cy='21' r='15.91549430918954' fill='transparent' stroke='url(#grad1)' stroke-width='3' stroke-dasharray='48.7 51.3' stroke-dashoffset='25'></circle><g class='chart-text'><text x='50%' y='50%' class='chart-number'>1.628</text><text x='50%' y='50%' class='chart-label'>Vittime</text></g></svg><div class='testoDXSVG'>48,7% <br> delle <br> donne <br> uccise</div><svg width='100%' height='100%' viewBox='0 0 42 42' class='donut'><defs><linearGradient id='grad1' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:var(--ColorOne);stop-opacity:1' /><stop offset='100%' style='stop-color:var(--ColorTwo);stop-opacity:1' /></linearGradient></defs><circle class='donut-hole' cx='21' cy='21' r='15.91549430918954' fill='transparent'></circle><circle class='donut-ring' cx='21' cy='21' r='15.91549430918954' fill='transparent' stroke='var(--Back)' stroke-width='3'></circle><circle class='donut-segment3' cx='21' cy='21' r='15.91549430918954' fill='transparent' stroke='url(#grad1)' stroke-width='3' stroke-dasharray='90 10' stroke-dashoffset='25'></circle><g class='chart-text'><text x='50%' y='50%' class='chart-number'>793</text><text x='50%' y='50%' class='chart-label'>Assassini</text></g></svg><div class='testoDXSVG'>94% <br> degli <br> autori <br> è uomo</div></div>"
+        document.getElementById("fsx").onclick = function() { cambiaDiapositivaSinistra3() };
+        document.getElementById("fdx").onclick = function() { cambiaDiapositivaDestra5() };
+    }
+
+
+    function cambiaDiapositivaDestra5(){
+        document.getElementById("d").innerHTML = "<a id='count'>5</a><div class='propics'><div class='propicContainer'><h2>Codice:</h2><a class='propic' href=''><img src='images/propictia.png' width='100%' alt='Tia'></a><h3>Tia</h3></div><div class='propicContainer'><h2>Dati:</h2><a class='propic' href='#'><img src='images/propicfra.png' width='100%' alt='Fra'></a><h3 style='margin-left: 64px;'>Fra</h3></div></div>"
+        document.getElementById("fsx").onclick = function() { cambiaDiapositivaSinistra4() };
+        document.getElementById("fdx").className = "frecciadisdx";
+        document.getElementById("fdx").removeAttribute("href");
+        document.getElementById("boxDx").className = "boxDestraVis";
+        document.getElementById("fsx").onclick = function() { cambiaDiapositivaSinistra4() };
+        document.getElementById("fdx").onclick = function() { nonCambia() };
+    }
+/*
+    var innerCount = document.getElementById("count").innerHTML;
+    var numCount = parseInt(innerCount);
+
+
+    function repeatControlCount(){
+        let innerCount = document.getElementById("count").innerHTML;
+        let numCount = parseInt(innerCount);
+        setTimeout(repeatControlCount, 1000);
+    }
+
+    repeatControlCount();
+
+function controlFrecce(){
+    if(numCount === 1){
+        document.getElementById("fsx").className = "frecciadisx";
+        document.getElementById("fsx").removeAttribute("href");
+        document.getElementById("boxSx").style.opacity = "1";
+        document.getElementById("fsx").onclick = function() { nonCambia() };
+    }
+    if(numCount > 1){
+        document.getElementById("fsx").className = "frecciasinistra";
+        document.getElementById("fsx").addAttribute("href='#'");
+        document.getElementById("boxDx").style.opacity = "0";
+    }
+    if(numCount === 2){
+        document.getElementById("fsx").onclick = function() { cambiaDiapositivaSinistra1() };
+        document.getElementById("fdx").onclick = function() { cambiaDiapositivaDestra3() };
+    }
+    if(numCount === 4){
+        document.getElementById("fsx").onclick = function() { cambiaDiapositivaSinistra3() };
+        document.getElementById("fdx").onclick = function() { cambiaDiapositivaDestra5() };
+    }
+    if(numCount === 5){
+        document.getElementById("fdx").className = "frecciadisdx";
+        document.getElementById("fdx").removeAttribute("href");
+        document.getElementById("boxDx").style.opacity = "1";
+        document.getElementById("fsx").onclick = function() { cambiaDiapositivaSinistra4() };
+        document.getElementById("fdx").onclick = function() { nonCambia() };
+    }
+    if(numCount < 5){
+        document.getElementById("fdx").className = "frecciadestra";
+        document.getElementById("fdx").addAttribute("href='#'");
+        document.getElementById("boxDx").style.opacity = "0";
+    }
+    setTimeout(controlFrecce, 1000);
+}
+
+controlFrecce(); */
+    </script>
+</body>
+</html>
